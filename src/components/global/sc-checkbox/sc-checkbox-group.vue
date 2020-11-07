@@ -36,7 +36,7 @@ export default {
   },
 
   mounted() {
-    console.log(this.name, this.modelValue)
+    //console.log(this.name, this.modelValue)
   },
 
   methods: {
@@ -62,7 +62,7 @@ label {
   color: #000;
   height: 24px;
   line-height: 24px;
-  display: block;
+  display: inline-block;
   margin: 2px 0;
   cursor: pointer;
   span {
