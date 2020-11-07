@@ -108,9 +108,10 @@ export default {
 
 .show-more {
   color: #808080;
+  text-align: right;
   display: block;
   line-height: 1.5rem;
-  float: right;
+  margin-top: .25rem;
 
   &:hover {
     text-decoration: underline;
