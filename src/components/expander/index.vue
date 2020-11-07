@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="expander noselect">
     <div class="expander-header" @click="toggleShow">
-      Filter
+      {{title}}
     </div>
     <div class="expander-body" v-show="isOpen">
       <slot></slot>
@@ -13,6 +13,13 @@
 
 export default {
   name: 'Expander',
+
+  props: {
+    title: {
+      type: String,
+      default: 'Group'
+    }
+  },
 
   data() {
     return {

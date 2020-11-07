@@ -1,7 +1,7 @@
 <template>
   <main>
     <aside>
-      <expander>
+      <expander title="Brands">
         <sc-checkbox value="1" name="brands" v-model="brands">one</sc-checkbox>
         <sc-checkbox value="2" name="brands" v-model="brands">two</sc-checkbox>
         <sc-checkbox value="3" name="brands" v-model="brands">three</sc-checkbox>
