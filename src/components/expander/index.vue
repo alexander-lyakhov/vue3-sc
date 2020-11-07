@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="expander noselect">
-    <div class="expander-header" @click="toggleShow">
+    <div class="expander-header" @click="toggleShow" :class={isOpen}>
       {{title}}
     </div>
     <div class="expander-body" v-show="isOpen">
@@ -65,6 +65,10 @@ export default {
       position: absolute;
       top: 0;
       right: 0;
+    }
+
+    &.isOpen:after {
+      content: '-';
     }
   }
 

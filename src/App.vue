@@ -1,11 +1,24 @@
 <template>
   <main>
     <aside>
+      <!--
       <expander title="Brands">
-        <sc-checkbox value="1" name="brands" v-model="brands">one</sc-checkbox>
-        <sc-checkbox value="2" name="brands" v-model="brands">two</sc-checkbox>
-        <sc-checkbox value="3" name="brands" v-model="brands">three</sc-checkbox>
-        <sc-checkbox value="4" name="brands" v-model="brands">four</sc-checkbox>
+        <sc-checkbox-group value="1" name="brands" v-model="filter['brands']">one</sc-checkbox-group>
+        <sc-checkbox-group value="2" name="brands" v-model="filter['brands']">two</sc-checkbox-group>
+        <sc-checkbox-group value="3" name="brands" v-model="filter['brands']">three</sc-checkbox-group>
+        <sc-checkbox-group value="4" name="brands" v-model="filter['brands']">four</sc-checkbox-group>
+      </expander>
+      -->
+      <expander v-for="(facet, facetIndex) in listFacets" :key="facetIndex" :title="facet.title">
+        <sc-checkbox-group
+          v-for="(item, itemIndex) in facet.values"
+          :key="facetIndex + '_' + itemIndex"
+          value="1"
+          :name="facet.title"
+          v-model="filter['item.value']"
+        >
+          {{item.value}}
+        </sc-checkbox-group>
       </expander>
     </aside>
   </main>
@@ -13,22 +26,41 @@
 
 <script>
 import expander from '@/components/expander';
-import scCheckbox from '@/components/global/sc-checkbox';
+import scCheckboxGroup from '@/components/global/sc-checkbox/sc-checkbox-group.vue';
+
+import products from '@/store/products.json';
 
 export default {
   components: {
     expander,
-    scCheckbox
+    scCheckboxGroup
   },
 
   data() {
     return {
-      brands: []
+      //brands: []
+      filter: {},
+      facets: products.facets
     }
   },
 
   created() {
-    console.log('brands', this.brands)
+  },
+
+  mounted() {
+    console.log(this.facets)
+  },
+
+  watch: {
+    filter(val) {
+      console.log('filter', val)
+    }
+  },
+
+  computed: {
+    listFacets() {
+      return Object.values(this.facets).filter(el => el.type === 'list');
+    }
   },
 
   methods: {
