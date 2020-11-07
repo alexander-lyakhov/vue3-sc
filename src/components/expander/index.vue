@@ -40,8 +40,8 @@ export default {
   color: #000;
   background: #fff;
   box-sizing: border-box;
-  width: 256px;
-  margin: 1rem auto;
+  //width: 256px;
+  margin: 1rem 1rem;
 
   &-header {
     font-weight: bold;

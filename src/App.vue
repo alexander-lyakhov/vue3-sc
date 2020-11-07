@@ -10,15 +10,17 @@
       </expander>
       -->
       <expander v-for="(facet, facetIndex) in listFacets" :key="facetIndex" :title="facet.title">
-        <sc-checkbox-group
-          v-for="(item, itemIndex) in facet.values"
-          :key="facetIndex + '_' + itemIndex"
-          value="1"
-          :name="facet.title"
-          v-model="filter['item.value']"
-        >
-          {{item.value}}
-        </sc-checkbox-group>
+        <ul :class="{'colums-2': facet.title === 'Size'}">
+          <li v-for="(item, itemIndex) in facet.values" :key="facetIndex + '_' + itemIndex">
+            <sc-checkbox-group
+              :value="item.value"
+              :name="facet.title"
+              v-model="filter[facet.title]"
+            >
+              {{item.value}} <span class="count">({{item.count}})</span>
+            </sc-checkbox-group>
+          </li>
+        </ul>
       </expander>
     </aside>
   </main>
@@ -82,6 +84,23 @@ aside {
   background: #fff;
   box-shadow: 0 6px 8px rgba(0,0,0,0.4);
   border: 1px solid transparent;
-  width: 288px;
+  width: 336px;
+}
+
+.count {
+  color: #08c;
+  //color: #080;
+  //background: #d8f0d8;
+  text-align: right;
+  //min-width: 32px;
+  //display: inline-block;
+  padding: 0 .25rem;
+  float: right;
+}
+
+.colums-2 {
+  column-count: 2;
+  //column-gap: 0;
+  //column-rule: 1px solid #e0e0e0;
 }
 </style>
