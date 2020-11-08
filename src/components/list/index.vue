@@ -2,7 +2,6 @@
   <ul :style="ulStyles" ref="ul">
     <li v-for="(item, index) in renderItems" :key="index">
       <slot :item="item"></slot>
-      <span class="count">({{item.count}})</span>
     </li>
   </ul>
   <a
@@ -111,16 +110,4 @@ export default {
     text-decoration: underline;
   }
 }
-
-.count {
-  color: #08c;
-  //color: #080;
-  //background: #d8f0d8;
-  text-align: right;
-  //min-width: 32px;
-  //display: inline-block;
-  padding: 0 .25rem;
-  float: right;
-}
-
 </style>

@@ -2,19 +2,12 @@
   <main>
     <aside>
       <expander v-for="(facet, facetIndex) in listFacets" :key="facetIndex" :title="facet.title">
-        <list
-          :name="facet.title"
-          :items="facet.values"
-          :columns="facet.title === 'Size'? 2:1"
-        >
+        <list :name="facet.title" :items="facet.values" :columns="getColomnCount(facet)">
           <template #default="{item}">
-            <sc-checkbox-group
-              :value="item.value"
-              :name="name"
-              v-model="filter[name]"
-            >
+            <sc-checkbox-group :value="item.value" :name="name" v-model="filter[name]">
               {{item.value}}
             </sc-checkbox-group>
+            <span class="count">({{item.count}})</span>
           </template>
         </list>
       </expander>
@@ -48,6 +41,12 @@ export default {
       return Object.values(this.facets).filter(el => el.type === 'list');
     }
   },
+
+  methods: {
+    getColomnCount(facet) {
+      return facet.title.toLowerCase() === 'size'? 2:1;
+    }
+  }
 }
 </script>
 
@@ -64,5 +63,17 @@ aside {
   border: 1px solid transparent;
   width: 336px;
 }
+
+.count {
+  color: #08c;
+  //color: #080;
+  //background: #d8f0d8;
+  text-align: right;
+  //min-width: 32px;
+  //display: inline-block;
+  padding: 0 .25rem;
+  float: right;
+}
+
 
 </style>
