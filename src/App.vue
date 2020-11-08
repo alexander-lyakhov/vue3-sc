@@ -7,6 +7,15 @@
           :items="facet.values"
           :columns="facet.title === 'Size'? 2:1"
         >
+          <template #default="{item}">
+            <sc-checkbox-group
+              :value="item.value"
+              :name="name"
+              v-model="filter[name]"
+            >
+              {{item.value}}
+            </sc-checkbox-group>
+          </template>
         </list>
       </expander>
     </aside>
@@ -23,11 +32,13 @@ import products from '@/store/products.json';
 export default {
   components: {
     expander,
+    scCheckboxGroup,
     list,
   },
 
   data() {
     return {
+      filter: {},
       facets: products.facets
     }
   },

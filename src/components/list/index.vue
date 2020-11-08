@@ -1,13 +1,7 @@
 <template>
   <ul :style="ulStyles" ref="ul">
     <li v-for="(item, index) in renderItems" :key="index">
-      <sc-checkbox-group
-        :value="item.value"
-        :name="name"
-        v-model="filter[name]"
-      >
-        {{item.value}}
-      </sc-checkbox-group>
+      <slot :item="item"></slot>
       <span class="count">({{item.count}})</span>
     </li>
   </ul>
