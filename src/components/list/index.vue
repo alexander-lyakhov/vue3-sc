@@ -62,7 +62,6 @@ export default {
 
   mounted() {
     this.count = this.$refs.ul.children.length;
-    //console.log(this.limit, this.itemHeight, this.count)
   },
 
   computed: {
@@ -93,6 +92,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+li {
+  //background: #eee;
+  line-height: 1.5rem;
+  margin: 2px 0;
+}
 
 .show-more {
   color: #808080;

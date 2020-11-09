@@ -2,14 +2,27 @@
   <main>
     <aside>
       <expander v-for="(facet, facetIndex) in listFacets" :key="facetIndex" :title="facet.title">
-        <list :items="facet.values" :columns="getColomnCount(facet)">
-          <template #default="{item}">
-            <sc-checkbox-group :value="item.value" :name="facet.title" v-model="filter[facet.title]">
-              {{item.value}}
-            </sc-checkbox-group>
-            <span class="count">({{item.count}})</span>
-          </template>
-        </list>
+        <template v-if="facet.moduleType === 'FacetsTile'">
+          <list :items="facet.values" :columns="getColomnCount(facet)">
+            <template v-if="facet.type === 'breadcrumbed'" #default="{item}">
+              <a href="#">
+                {{item.value}}
+              </a>
+              <span class="count">({{item.count}})</span>
+            </template>
+
+            <template v-else #default="{item}">
+              <sc-checkbox-group :value="item.value" :name="facet.title" v-model="filter[facet.title]">
+                {{item.value}}
+              </sc-checkbox-group>
+              <span class="count">({{item.count}})</span>
+            </template>
+          </list>
+        </template>
+
+        <template v-if="facet.moduleType === 'FacetsColour'">
+          <color-palette :items="facet.values" />
+        </template>
       </expander>
     </aside>
   </main>
@@ -18,6 +31,7 @@
 <script>
 import expander from '@/components/expander';
 import list from '@/components/list';
+import colorPalette from '@/components/color-palette';
 import scCheckboxGroup from '@/components/global/sc-checkbox/sc-checkbox-group.vue';
 
 import products from '@/store/products.json';
@@ -29,6 +43,7 @@ export default {
     expander,
     scCheckboxGroup,
     list,
+    colorPalette
   },
 
   data() {
@@ -40,7 +55,8 @@ export default {
 
   computed: {
     listFacets() {
-      return Object.values(this.facets).filter(el => el.type === 'list');
+      //return Object.values(this.facets).filter(el => el.type === 'list');
+      return this.facets;
     }
   },
 

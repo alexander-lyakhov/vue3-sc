@@ -63,7 +63,6 @@ label {
   height: 24px;
   line-height: 24px;
   display: inline-block;
-  margin: 2px 0;
   cursor: pointer;
   span {
     margin-left: .5rem;
