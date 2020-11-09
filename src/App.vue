@@ -109,28 +109,21 @@ aside {
   &::v-deep li {
     position: relative;
 
-    &:nth-child(n + 2):after {
+    &:nth-child(n + 1):after {
       content: '';
-      border-left: 1px solid #08c;
-      border-bottom: 1px solid #08c;
+      background: #08c;
       display: block;
-      width: .5rem;
-      height: .875rem;
+      width: 8px;
+      height: 8px;
       position: absolute;
-      left: calc(-1rem + 2px);
-      top: 0;
+      left: -16px;
+      top: 8px;
     }
 
-    &:nth-child(n + 2) {
-      margin-left: 1rem;
-    }
-
-    &:nth-child(n + 3) {
-      margin-left: 2rem;
-    }
-
-    &:nth-child(n + 4) {
-      margin-left: 3rem;
+    @for $i from 1 through 20 {
+      &:nth-child(n + #{$i}) {
+        margin-left: $i * 1rem;
+      }
     }
   }
 }
