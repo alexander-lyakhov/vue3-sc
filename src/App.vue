@@ -2,9 +2,9 @@
   <main>
     <aside>
       <expander v-for="(facet, facetIndex) in listFacets" :key="facetIndex" :title="facet.title">
-        <list :name="facet.title" :items="facet.values" :columns="getColomnCount(facet)">
+        <list :items="facet.values" :columns="getColomnCount(facet)">
           <template #default="{item}">
-            <sc-checkbox-group :value="item.value" :name="name" v-model="filter[name]">
+            <sc-checkbox-group :value="item.value" :name="facet.title" v-model="filter[facet.title]">
               {{item.value}}
             </sc-checkbox-group>
             <span class="count">({{item.count}})</span>
@@ -21,6 +21,8 @@ import list from '@/components/list';
 import scCheckboxGroup from '@/components/global/sc-checkbox/sc-checkbox-group.vue';
 
 import products from '@/store/products.json';
+
+console.log('products', products);
 
 export default {
   components: {

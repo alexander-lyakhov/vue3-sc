@@ -29,11 +29,6 @@ export default {
   },
 
   props: {
-    name: {
-      type: String,
-      required: true
-    },
-
     items: {
       type: Array,
       default: [],
@@ -67,7 +62,7 @@ export default {
 
   mounted() {
     this.count = this.$refs.ul.children.length;
-    console.log(this.limit, this.itemHeight, this.count)
+    //console.log(this.limit, this.itemHeight, this.count)
   },
 
   computed: {
