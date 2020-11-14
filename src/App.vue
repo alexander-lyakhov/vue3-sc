@@ -32,7 +32,7 @@
         </template>
 
         <template v-if="isRange(facet)">
-          <range :min="50" />
+          <range :min="facet.min" :max="facet.max" :values="[facet.min, facet.max]" />
         </template>
       </expander>
     </aside>

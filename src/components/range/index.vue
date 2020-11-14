@@ -26,7 +26,7 @@ export default {
     },
     values: {
       type: Array,
-      default: [0, 100],
+      required: true
     },
 
   },
@@ -36,7 +36,6 @@ export default {
     const sliderRight = this.$refs['slider-right'];
     const path = this.$refs['path'];
     const valueIndicator = this.$refs['value-indicator'];
-
 
     if (this.$props.values[0] < this.$props.min) {
       this.$props.values[0] = this.$props.min;
