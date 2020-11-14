@@ -30,6 +30,10 @@
         <template v-if="isColor(facet)">
           <color-palette :items="facet.values" />
         </template>
+
+        <template v-if="isRange(facet)">
+          <range :min="50" />
+        </template>
       </expander>
     </aside>
   </main>
@@ -39,6 +43,7 @@
 import expander from '@/components/expander';
 import list from '@/components/list';
 import colorPalette from '@/components/color-palette';
+import range from '@/components/range';
 import scCheckboxGroup from '@/components/global/sc-checkbox/sc-checkbox-group.vue';
 
 import products from '@/store/products.json';
@@ -50,7 +55,8 @@ export default {
     expander,
     scCheckboxGroup,
     list,
-    colorPalette
+    colorPalette,
+    range
   },
 
   data() {
@@ -82,6 +88,10 @@ export default {
 
     isColor(facet) {
       return facet.moduleType === 'FacetsColour';
+    },
+
+    isRange(facet) {
+      return facet.moduleType === 'FacetsPrice' && facet.type === 'range';
     }
   }
 }
@@ -103,6 +113,7 @@ aside {
 
 .breadcrumbs {
   background: #f0f0f0;
+  border: 1px solid #9ce;
   margin: 0 -0.5rem;
   padding: 0 0.5rem;
 
