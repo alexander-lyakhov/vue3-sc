@@ -22,10 +22,6 @@ const LESS = 'Show less';
 export default {
   name:'list',
 
-  components: {
-    scCheckboxGroup
-  },
-
   props: {
     items: {
       type: Array,
