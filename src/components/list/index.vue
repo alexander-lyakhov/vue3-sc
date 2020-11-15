@@ -8,7 +8,7 @@
     class="show-more"
     href="#"
     v-if="count > limit"
-    @click="toggleIsLimited"
+    @click.prevent@="toggleIsLimited"
   >
     {{limitationLabel}}
   </a>
