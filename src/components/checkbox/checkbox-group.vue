@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'sc-checkbox-group',
+  name: 'checkbox-group',
 
   props: {
     name: {

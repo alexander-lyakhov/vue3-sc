@@ -16,8 +16,6 @@
 
 <script>
 
-import scCheckboxGroup from '@/components/global/sc-checkbox/sc-checkbox-group.vue';
-
 const MORE = 'Show more';
 const LESS = 'Show less';
 

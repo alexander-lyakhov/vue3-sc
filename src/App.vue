@@ -19,9 +19,9 @@
         <template v-if="isCheckList(facet)">
           <list :items="facet.values" :columns="getColomnCount(facet)">
             <template #default="{item}">
-              <sc-checkbox-group :value="item.value" :name="facet.title" v-model="filter[facet.title]">
+              <checkbox-group :value="item.value" :name="facet.title" v-model="filter[facet.title]">
                 {{item.value}}
-              </sc-checkbox-group>
+              </checkbox-group>
               <span class="count">({{item.count}})</span>
             </template>
           </list>
@@ -44,7 +44,7 @@ import expander from '@/components/expander';
 import list from '@/components/list';
 import colorPalette from '@/components/color-palette';
 import range from '@/components/range';
-import scCheckboxGroup from '@/components/global/sc-checkbox/sc-checkbox-group.vue';
+import checkboxGroup from '@/components/checkbox/checkbox-group.vue';
 
 import products from '@/store/products.json';
 
@@ -53,7 +53,7 @@ console.log('products', products);
 export default {
   components: {
     expander,
-    scCheckboxGroup,
+    checkboxGroup,
     list,
     colorPalette,
     range
