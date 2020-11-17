@@ -68,6 +68,18 @@ export default {
       filter: {},
     }
   },
+
+  created() {
+    this.$watch('filter', value =>
+      {
+        console.table({...value});
+      },
+      {
+        deep: true
+      }
+    )
+  },
+
   methods: {
     getColomnCount(facet) {
       return facet.title.toLowerCase() === 'size'? 2:1;
