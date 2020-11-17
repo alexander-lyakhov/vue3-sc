@@ -3,16 +3,24 @@
     <div class="product">
       <div class="product-image">
         <img :src="product.imageAndColor[0].imageUrl" />
+        <div v-if="product.clearancePrice" class="ribbon">
+          Clearance
+        </div>
       </div>
       <div class="product-price">
-        <span class="product-price--strike"> $999 </span>
-        <span class="product-price--sale">{{product.priceData}}</span>
+        <template v-if="product.formattedWasPrice">
+          <span class="product-price--strike">{{product.formattedWasPrice}}</span>
+          <span class="product-price--sale">{{product.priceData}}</span>
+        </template>
+        <template v-else>
+          <span class="product-price">{{product.priceData}}</span>
+        </template>
       </div>
       <div class="product-title">
         <span>{{product.title}}</span>
       </div>
-      <div class="product-promo">
-        $50 Off Our Regular Price
+      <div v-if="product.priceShortMessage" class="product-promo">
+        {{product.priceShortMessage}}
       </div>
     </div>
   </div>
@@ -47,22 +55,40 @@ export default {
   // margin-right: .5rem;
   margin: 0 auto 1rem;
   padding: .5rem;
-  cursor: pointer;
   transition: transform .25s;
+  cursor: default;
 
   &:hover {
-    // transform: scale(1.1);
+    //transform: scale(1.1);
     z-index: 1;
   }
 
-  &-image img {
-    border: 1px solid #0080c0;
-    width: 100%;
+  &-image {
+    position: relative;
+
+    .ribbon {
+      color: #fff;
+      background: #e00;
+      font-size: .75rem;
+      font-weight: bold;
+      display: inline-block;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      padding: .25rem .5rem;
+    }
+
+    img {
+      border: 1px solid #0080c0;
+      width: 100%;
+      cursor: pointer;
+    }
   }
 
   &-price {
     font-weight: bold;
     font-size: 1rem;
+    color: #000;
     padding: .5rem 0;
     span {
       display: inline-block;
@@ -105,6 +131,7 @@ export default {
   &-promo {
     color: #c00;
     padding: .5rem 0 0 0;
+    //margin: .5rem 0 0 0;
   }
 }
 </style>
