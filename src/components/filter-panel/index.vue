@@ -110,7 +110,7 @@ aside {
   background: #fff;
   box-shadow: 0 6px 8px rgba(0,0,0,0.4);
   border: 1px solid transparent;
-  width: 336px;
+  min-width: 336px;
 }
 
 .breadcrumbs {
