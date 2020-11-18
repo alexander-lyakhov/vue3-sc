@@ -7,9 +7,11 @@
           Clearance
         </div>
       </div>
+      <div class="product-rating" :data-rating-count="product.rating" :style="getStyles(product.rating)">
+      </div>
       <div class="product-price">
-        <template v-if="product.formattedWasPrice">
-          <span class="product-price--strike">{{product.formattedWasPrice}}</span>
+        <template v-if="product.formattedWasPrice || product.formattedTimeTestedPrice">
+          <span class="product-price--strike">{{product.formattedWasPrice || product.formattedTimeTestedPrice}}</span>
           <span class="product-price--sale">{{product.priceData}}</span>
         </template>
         <template v-else>
@@ -36,6 +38,14 @@ export default {
       type: Object,
       default: {},
       required: true
+    }
+  },
+
+  methods: {
+    getStyles(rating) {
+      return {
+        backgroundPositionY: -28 - Math.ceil(rating * 2 ) / 2 * 44    + 'px'
+      }
     }
   }
 }
@@ -82,6 +92,23 @@ export default {
       border: 1px solid #0080c0;
       width: 100%;
       cursor: pointer;
+    }
+  }
+
+  &-rating {
+    background: #edc url('~@/assets/rating.png');
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+    width: 100px;
+    height: 24px;
+
+    &:after {
+      content: attr(data-rating-count);
+      //background: #edc;
+      display: block;
+      line-height: 24px;
+      position: relative;
+      left: 100%;
     }
   }
 
