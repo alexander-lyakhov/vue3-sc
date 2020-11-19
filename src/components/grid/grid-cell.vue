@@ -7,7 +7,13 @@
           Clearance
         </div>
       </div>
-      <div class="product-rating" :data-rating-count="product.rating" :style="getStyles(product.rating)">
+      <div class="product-rating">
+        <div
+          class="product-rating__stars"
+          :style="getStyles(product.rating)"
+          :data-rating="product.rating"
+        ></div>
+        <div class="product-rating__count">({{product.ratingsCount}})</div>
       </div>
       <div class="product-price">
         <template v-if="product.formattedWasPrice || product.formattedTimeTestedPrice">
@@ -96,19 +102,38 @@ export default {
   }
 
   &-rating {
-    background: #edc url('~@/assets/rating.png');
-    background-repeat: no-repeat;
-    background-position-x: 50%;
-    width: 100px;
-    height: 24px;
+    display: flex;
+    line-height: 24px;
+    margin-top: .5rem;
 
-    &:after {
-      content: attr(data-rating-count);
-      //background: #edc;
-      display: block;
-      line-height: 24px;
-      position: relative;
-      left: 100%;
+    &__stars {
+      background: #edc url('~@/assets/rating.png');
+      background-repeat: no-repeat;
+      background-position-x: 50%;
+      width: 96px;
+      height: 24px;
+      cursor: pointer;
+
+      &:hover:after {
+        content: attr(data-rating);
+        color: #fff;
+        background: #000;
+        border-radius: 4px;
+        text-align: center;
+        display: block;
+        width: 52px;
+        line-height: 24px;
+        position: relative;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -24px);
+      }
+    }
+
+    &__count {
+      color: #09c;
+      margin-left: .25rem;
+      padding: 0 .25rem;
     }
   }
 
@@ -141,7 +166,7 @@ export default {
   }
   &-title {
     background: #e8e8e8;
-    border-radius: 4px;
+    //Mborder-left: 1px solid #099;
     padding: .5rem .5rem;
     span {
       line-height: 1.25rem;
@@ -157,8 +182,10 @@ export default {
 
   &-promo {
     color: #c00;
-    padding: .5rem 0 0 0;
-    //margin: .5rem 0 0 0;
+    background: #f8f0f0;
+    border-left: 1px solid #f00;
+    padding: .25rem .5rem;
+    margin: .25rem 0 0 0;
   }
 }
 </style>
