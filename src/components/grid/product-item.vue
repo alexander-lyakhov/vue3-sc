@@ -1,35 +1,33 @@
 ﻿<template>
-  <div class="grid-cell">
-    <div class="product">
-      <div class="product-image">
-        <img :src="product.imageAndColor[0].imageUrl" />
-        <div v-if="product.clearancePrice" class="ribbon">
-          Clearance
-        </div>
+  <div class="product">
+    <div class="product-image">
+      <img :src="product.imageAndColor[0].imageUrl" />
+      <div v-if="product.clearancePrice" class="ribbon">
+        Clearance
       </div>
-      <div class="product-rating">
-        <div
-          class="product-rating__stars"
-          :style="getStyles(product.rating)"
-          :data-rating="product.rating"
-        ></div>
-        <div class="product-rating__count">({{product.ratingsCount}})</div>
-      </div>
-      <div class="product-price">
-        <template v-if="product.formattedWasPrice || product.formattedTimeTestedPrice">
-          <span class="product-price--strike">{{product.formattedWasPrice || product.formattedTimeTestedPrice}}</span>
-          <span class="product-price--sale">{{product.priceData}}</span>
-        </template>
-        <template v-else>
-          <span class="product-price">{{product.priceData}}</span>
-        </template>
-      </div>
-      <div class="product-title">
-        <span>{{product.title}}</span>
-      </div>
-      <div v-if="product.priceShortMessage" class="product-promo">
-        {{product.priceShortMessage}}
-      </div>
+    </div>
+    <div class="product-rating">
+      <div
+        class="product-rating__stars"
+        :style="getStyles(product.rating)"
+        :data-rating="product.rating"
+      ></div>
+      <div class="product-rating__count">({{product.ratingsCount}})</div>
+    </div>
+    <div class="product-price">
+      <template v-if="product.formattedWasPrice || product.formattedTimeTestedPrice">
+        <span class="product-price--strike">{{product.formattedWasPrice || product.formattedTimeTestedPrice}}</span>
+        <span class="product-price--sale">{{product.priceData}}</span>
+      </template>
+      <template v-else>
+        <span class="product-price">{{product.priceData}}</span>
+      </template>
+    </div>
+    <div class="product-title">
+      <span>{{product.title}}</span>
+    </div>
+    <div v-if="product.priceShortMessage" class="product-promo">
+      {{product.priceShortMessage}}
     </div>
   </div>
 </template>
@@ -37,7 +35,7 @@
 <script>
 
 export default {
-  name: 'grid-cell',
+  name: 'product-item',
 
   props: {
     product: {

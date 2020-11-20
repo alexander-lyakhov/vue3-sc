@@ -1,18 +1,20 @@
 ﻿<template>
   <div class="grid">
-    <grid-cell v-for="product in products" :key="product.code" :product="product" />
+    <div class="grid-cell" v-for="product in products" :key="product.code" >
+      <product-item :product="product" />
+    </div>
   </div>
 </template>
 
 <script>
 
-import gridCell from './grid-cell.vue';
+import productItem from './product-item.vue';
 
 export default {
   name: 'grid',
 
   components: {
-    gridCell
+    productItem
   },
 
   props: {
