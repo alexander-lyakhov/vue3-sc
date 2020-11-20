@@ -72,7 +72,7 @@ export default {
   created() {
     this.$watch('filter', value =>
       {
-        console.table({...value});
+        this.composeURL({...value});
       },
       {
         deep: true
@@ -99,6 +99,23 @@ export default {
 
     isRange(facet) {
       return facet.moduleType === 'FacetsPrice' && facet.type === 'range';
+    },
+
+    composeURL(filter) {
+      console.table(filter);
+      //console.log(Object.entries(filter))
+
+      const urlParams = {};
+
+      Object.entries(filter).map(([key, [...value]], index) => {
+        //console.log(key, value, index);
+        if (value.length) {
+          urlParams[`x${index + 2}`] = key;
+          urlParams[`q${index + 2}`] = value.join('|');
+        }
+      })
+
+      console.log('urlParams', urlParams)
     }
   }
 }
