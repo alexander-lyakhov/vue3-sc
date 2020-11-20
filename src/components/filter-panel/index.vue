@@ -39,11 +39,11 @@
 
 <script>
 
-import expander from '@/components/expander';
-import list from '@/components/list';
-import colorPalette from '@/components/color-palette';
-import range from '@/components/range';
-import checkboxGroup from '@/components/checkbox/checkbox-group.vue';
+import expander from './expander';
+import list from './list';
+import colorPalette from './color-palette';
+import range from './range';
+import checkboxGroup from './checkbox/checkbox-group.vue';
 
 export default {
   name: 'filter-panel',
