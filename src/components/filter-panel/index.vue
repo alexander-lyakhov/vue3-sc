@@ -39,11 +39,18 @@
 
 <script>
 
+const baseURL = 'http://www.sportchek.ca/services/sportchek/search-and-promote/products';
+
+const defaultUrlParams = {
+  'ast-id-level-2':'men::shoes-footwear'
+}
+
 import expander from './expander';
 import list from './list';
 import colorPalette from './color-palette';
 import range from './range';
 import checkboxGroup from './checkbox/checkbox-group.vue';
+import api from '@/api/index.js';
 
 export default {
   name: 'filter-panel',
@@ -66,6 +73,14 @@ export default {
   data() {
     return {
       filter: {},
+      paging: {
+        page: 1,
+        count: 24
+      },
+      preselected: {
+        preselectedBrandsNumber: 0,
+        preselectedCategoriesNumber: 2
+      }
     }
   },
 
@@ -78,6 +93,11 @@ export default {
         deep: true
       }
     )
+  },
+
+  mounted() {
+    const urlParams = this.composeURL(this.filter)
+    api.getProducts(urlParams);
   },
 
   methods: {
@@ -103,19 +123,21 @@ export default {
 
     composeURL(filter) {
       console.table(filter);
-      //console.log(Object.entries(filter))
 
-      const urlParams = {};
+      const params = {};
 
-      Object.entries(filter).map(([key, [...value]], index) => {
-        //console.log(key, value, index);
+      Object.entries(Object.assign({}, defaultUrlParams, filter)).map(([key, value], index) => {
         if (value.length) {
-          urlParams[`x${index + 2}`] = key;
-          urlParams[`q${index + 2}`] = value.join('|');
+          params[`x${index + 1}`] = key;
+          params[`q${index + 1}`] = Array.isArray(value) ? value.join('|'):value;
         }
       })
 
-      console.log('urlParams', urlParams)
+      const urlParams = Object.assign({}, this.preselected, params, this.paging);
+
+      console.log('urlParams', JSON.stringify(urlParams, null, 2))
+
+      return urlParams;
     }
   }
 }

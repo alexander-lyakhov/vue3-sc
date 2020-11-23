@@ -1,0 +1,4 @@
+﻿http://www.sportchek.ca/services/sportchek/search-and-promote/products?
+x1=ast-id-level-2&q1=men::shoes-footwear&preselectedCategoriesNumber=2&preselectedBrandsNumber=0&page=1&count=24
+
+http://www.sportchek.ca/services/sportchek/search-and-promote/products?x1=ast-id-level-2&q1=men::shoes-footwear&preselectedCategoriesNumber=2&preselectedBrandsNumber=0&page=1&count=24
