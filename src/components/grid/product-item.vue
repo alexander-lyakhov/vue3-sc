@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="product">
     <div class="product-image">
-      <img :src="product.imageAndColor[0].imageUrl" />
+      <img :data-src="product.imageAndColor[0].imageUrl" :src="blankImage" />
       <div v-if="product.clearancePrice" class="ribbon">
         Clearance
       </div>
@@ -34,6 +34,8 @@
 
 <script>
 
+import blankImage from '@/assets/img-blank-01.png';
+
 export default {
   name: 'product-item',
 
@@ -44,6 +46,8 @@ export default {
       required: true
     }
   },
+
+  data: () => ({blankImage}),
 
   methods: {
     getStyles(rating) {

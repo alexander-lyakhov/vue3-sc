@@ -97,7 +97,7 @@ export default {
 
   mounted() {
     const urlParams = this.composeURL(this.filter)
-    api.getProducts(urlParams);
+    //api.getProducts(urlParams);
   },
 
   methods: {
