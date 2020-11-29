@@ -49,19 +49,19 @@ export default {
     }
 }
 
-@media screen and (max-width: 1370px) {
+@media screen and (max-width: 1450px) {
   .grid .grid-cell {
       min-width: 33.33%;
     }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1200px) {
   .grid .grid-cell {
       min-width: 50%;
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 920px) {
   .grid .grid-cell {
       min-width: 100%;
     }

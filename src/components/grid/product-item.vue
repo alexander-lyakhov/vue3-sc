@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="product">
     <div class="product-image">
-      <img :data-src="product.imageAndColor[0].imageUrl" :src="blankImage" />
+      <img ref="product-image" src="@/assets/img-blank.png" />
       <div v-if="product.clearancePrice" class="ribbon">
         Clearance
       </div>
@@ -34,8 +34,6 @@
 
 <script>
 
-import blankImage from '@/assets/img-blank-01.png';
-
 export default {
   name: 'product-item',
 
@@ -47,7 +45,15 @@ export default {
     }
   },
 
-  data: () => ({blankImage}),
+  mounted() {
+    const img  = new Image();
+
+    img.addEventListener('load', e =>
+      this.$refs['product-image'].src = img.src
+    );
+    img.src = this.product.imageAndColor[0].imageUrl;
+
+  },
 
   methods: {
     getStyles(rating) {
