@@ -8,7 +8,7 @@
 
 <script>
 
-import productItem from './product-item.vue';
+import productItem from '@/components/product-item';
 
 export default {
   name: 'grid',
