@@ -26,22 +26,36 @@
     <div class="product-title">
       <span>{{product.title}}</span>
     </div>
-    <div v-if="product.priceShortMessage" class="product-promo">
-      {{product.priceShortMessage}}
+    <div v-if="product.priceShortMessage" class="product-promo" @click="openModal">
+      <span>{{ product.priceShortMessage }}</span>
+      <teleport v-if="showPromo" to="body">
+        <modal @click="closeModal">{{ product.priceLongMessage }}</modal>
+      </teleport>
     </div>
   </div>
 </template>
 
 <script>
 
+import modal from '@/components/modal';
+
 export default {
   name: 'product-item',
+  components: {
+    modal
+  },
 
   props: {
     product: {
       type: Object,
       default: {},
       required: true
+    }
+  },
+
+  data() {
+    return {
+      showPromo: false
     }
   },
 
@@ -60,6 +74,14 @@ export default {
       return {
         backgroundPositionY: -28 - Math.ceil(rating * 2 ) / 2 * 44    + 'px'
       }
+    },
+
+    openModal() {
+      this.showPromo = true;
+    },
+
+    closeModal() {
+      this.showPromo = false;
     }
   }
 }
@@ -72,11 +94,8 @@ export default {
   color: #000;
   background: #fff;
   box-shadow: 0 6px 6px rgba(0, 0, 0, .25);
-  //display: inline-block;
-  // width: 256px;
   width: 85%;
   min-width: 256px;
-  // margin-right: .5rem;
   margin: 0 auto 1rem;
   padding: .5rem;
   transition: transform .25s;
@@ -105,7 +124,6 @@ export default {
     img {
       border: 1px solid #0080c0;
       width: 100%;
-      cursor: pointer;
     }
   }
 
@@ -174,7 +192,6 @@ export default {
   }
   &-title {
     background: #e8e8e8;
-    //Mborder-left: 1px solid #099;
     padding: .5rem .5rem;
     span {
       line-height: 1.25rem;
