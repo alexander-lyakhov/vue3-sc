@@ -20,7 +20,7 @@
         <span class="product-price--sale">{{product.priceData}}</span>
       </template>
       <template v-else>
-        <span class="product-price">{{product.priceData}}</span>
+        <span>{{product.priceData}}</span>
       </template>
     </div>
     <div class="product-title">
@@ -29,7 +29,17 @@
     <div v-if="product.priceShortMessage" class="product-promo" @click="openModal">
       <span>{{ product.priceShortMessage }}</span>
       <teleport v-if="showPromo" to="body">
-        <modal @click="closeModal">{{ product.priceLongMessage }}</modal>
+        <modal @click="closeModal">
+          <template #modal-title>
+            PROMOTION DETAILS
+          </template>
+          <template #title>
+            {{ product.priceShortMessage }}
+          </template>
+          <template #body>
+            {{ product.priceLongMessage }}
+          </template>
+        </modal>
       </teleport>
     </div>
   </div>
@@ -77,10 +87,12 @@ export default {
     },
 
     openModal() {
+      document.body.classList.add('noscroll');
       this.showPromo = true;
     },
 
     closeModal() {
+      document.body.classList.remove('noscroll');
       this.showPromo = false;
     }
   }
@@ -211,6 +223,7 @@ export default {
     border-left: 1px solid #f00;
     padding: .25rem .5rem;
     margin: .25rem 0 0 0;
+    cursor: pointer;
   }
 }
 </style>

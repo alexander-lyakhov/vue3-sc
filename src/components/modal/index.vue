@@ -1,9 +1,17 @@
 <template>
   <div class="modal">
     <div class="modal-overlay"></div>
-    <h2>
-      <slot>Modal content</slot>
-    </h2>
+    <div class="modal-dialog">
+      <div class="modal-title">
+        <slot name="modal-title">Modal Title</slot>
+      </div>
+      <div class="content-title">
+        <slot name="title">Content Title</slot>
+      </div>
+      <p class="content-body">
+        <slot name="body">Content Body</slot>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -32,11 +40,29 @@ export default {
     opacity: .5;
   }
 
-  h2 {
-    color: #eee;
+  &-dialog {
+    color: #fff;
+    background: #404040;
+    border: 2px solid #eee;
+    box-shadow: 0 8px 8px rgba(0,0,0,0.25);
+    max-width: 50%;
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+  }
+
+  &-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .content-title {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
   }
 }
 </style>
