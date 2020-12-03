@@ -29,7 +29,7 @@
     <div v-if="product.priceShortMessage" class="product-promo" @click="openModal">
       <span>{{ product.priceShortMessage }}</span>
       <teleport v-if="showPromo" to="body">
-        <modal @click="closeModal">
+        <modal @close="closeModal">
           <template #modal-title>
             PROMOTION DETAILS
           </template>
@@ -76,7 +76,6 @@ export default {
       this.$refs['product-image'].src = img.src
     );
     img.src = this.product.imageAndColor[0].imageUrl;
-
   },
 
   methods: {
@@ -87,12 +86,10 @@ export default {
     },
 
     openModal() {
-      document.body.classList.add('noscroll');
       this.showPromo = true;
     },
 
     closeModal() {
-      document.body.classList.remove('noscroll');
       this.showPromo = false;
     }
   }
