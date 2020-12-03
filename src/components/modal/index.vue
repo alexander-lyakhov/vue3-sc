@@ -1,7 +1,7 @@
 <template>
   <div class="modal">
     <div class="modal-overlay"></div>
-    <div class="modal-dialog">
+    <div class="modal-window">
       <div class="modal-title">
         <slot name="modal-title">Modal Title</slot>
       </div>
@@ -40,7 +40,7 @@ export default {
     opacity: .5;
   }
 
-  &-dialog {
+  &-window {
     color: #fff;
     background: #404040;
     border: 2px solid #eee;
