@@ -43,10 +43,6 @@ export default {
 
 <style lang="scss" scoped>
 
-.noscroll {
-  overflow: hidden;
-}
-
 .modal {
   position: fixed;
   left: 0;
