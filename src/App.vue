@@ -1,6 +1,6 @@
 <template>
   <main>
-    <filter-panel :count="resultCount.total" :facets="facets" />
+    <filter-panel :count="resultCount.total" :sorting="sorting" :facets="facets" />
     <grid :products="products" />
   </main>
 </template>
@@ -22,6 +22,7 @@ export default {
   data() {
     return {
       resultCount: products.resultCount,
+      sorting: products.sortings,
       facets: products.facets,
       products: products.products
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="modal">
-    <div class="modal-overlay" @click="$emit('close')"></div>
+    <div class="modal-overlay" @click="closeModal"></div>
     <div class="modal-window">
       <div class="modal-title">
         <slot name="modal-title">Modal Title</slot>
@@ -21,7 +21,7 @@ export default {
   name: 'modal',
 
   created() {
-    window.addEventListener('keydown', this.closeModal)
+    window.addEventListener('keydown', this.closeByEsc)
   },
 
   mounted() {
@@ -29,13 +29,17 @@ export default {
   },
 
   beforeUnmount() {
-    window.removeEventListener('keydown', this.closeModal)
+    window.removeEventListener('keydown', this.closeByEsc)
   },
 
   methods: {
-    closeModal(e) {
+    closeByEsc(e) {
+      e.key === 'Escape' && this.closeModal();
+    },
+
+    closeModal() {
       document.body.classList.remove('noscroll');
-      e.key === 'Escape' && this.$emit('close');
+      this.$emit('close');
     }
   }
 }

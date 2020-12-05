@@ -1,6 +1,14 @@
 <template>
   <aside>
     <div class="items-count" >{{ count }} items</div>
+    <div class="dropdown-wrapper">
+      <label>Sort by</label>
+      <dropdown>
+        <option v-for="(item, index) in sorting" :key="index">
+          {{ item.title }}
+        </option>
+      </dropdown>
+    </div>
     <expander v-for="(facet, facetIndex) in facets" :key="facetIndex" :title="facet.title">
       <template v-if="isBreadcrumbed(facet)">
         <div class="breadcrumbs">
@@ -50,6 +58,7 @@ import expander from './expander';
 import list from './list';
 import colorPalette from './color-palette';
 import range from './range';
+import dropdown from './dropdown';
 import checkboxGroup from './checkbox/checkbox-group.vue';
 import api from '@/api/index.js';
 
@@ -57,6 +66,7 @@ export default {
   name: 'filter-panel',
 
   components: {
+    dropdown,
     expander,
     checkboxGroup,
     list,
@@ -68,6 +78,11 @@ export default {
     count: {
       type: Number,
       default: 0
+    },
+
+    sorting: {
+      type: Array,
+      default: []
     },
 
     facets: {
@@ -162,8 +177,19 @@ aside {
   font-size: 1.25rem;
   color: #808080;
   text-transform: uppercase;
-  text-align: center;
+  //text-align: center;
   margin: 1rem;
+}
+
+.dropdown-wrapper {
+  display: flex;
+  margin: 1rem;
+
+  label {
+    min-width: 64px;
+    height: 2rem;
+    line-height: 2rem;
+  }
 }
 
 .breadcrumbs {
