@@ -41,6 +41,14 @@ export default {
 }
 </script>
 
+<style>
+
+.noscroll {
+  overflow: hidden;
+}
+
+</style>
+
 <style lang="scss" scoped>
 
 .modal {
