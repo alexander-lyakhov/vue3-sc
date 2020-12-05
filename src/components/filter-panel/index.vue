@@ -1,5 +1,6 @@
 <template>
   <aside>
+    <div class="items-count" >{{ count }} items</div>
     <expander v-for="(facet, facetIndex) in facets" :key="facetIndex" :title="facet.title">
       <template v-if="isBreadcrumbed(facet)">
         <div class="breadcrumbs">
@@ -64,6 +65,11 @@ export default {
   },
 
   props: {
+    count: {
+      type: Number,
+      default: 0
+    },
+
     facets: {
       type: Object,
       required: true
@@ -150,6 +156,14 @@ aside {
   box-shadow: 0 6px 8px rgba(0,0,0,0.4);
   border: 1px solid transparent;
   min-width: 336px;
+}
+
+.items-count {
+  font-size: 1.25rem;
+  color: #808080;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 1rem;
 }
 
 .breadcrumbs {
