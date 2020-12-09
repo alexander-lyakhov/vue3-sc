@@ -15,6 +15,13 @@
 export default {
   name: 'Dropdown',
 
+  props: {
+    // will be binded with v-model (name should be 'modelValue. Changed in Vue 3')
+    modelValue: {
+      type: String,
+    },
+  },
+
   data() {
     return {
       options: [],
@@ -51,6 +58,8 @@ export default {
       this.value = this.$refs.selectElement.value;
 
       console.log('change', this.value, e.target.dataset.index)
+
+      this.$emit('update:modelValue', this.value);
     }
   }
 }

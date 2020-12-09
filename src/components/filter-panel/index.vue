@@ -3,7 +3,7 @@
     <div class="items-count" >{{ count }} items</div>
     <div class="dropdown-wrapper">
       <label>Sort by</label>
-      <dropdown>
+      <dropdown v-model="filter.sort">
         <option v-for="(item, index) in sorting" :key="index">
           {{ item.title }}
         </option>
@@ -226,11 +226,7 @@ aside {
 
 .count {
   color: #08c;
-  //color: #080;
-  //background: #d8f0d8;
   text-align: right;
-  //min-width: 32px;
-  //display: inline-block;
   padding: 0 .25rem;
   float: right;
 }
