@@ -4,7 +4,7 @@
     <div class="dropdown-wrapper">
       <label>Sort by</label>
       <dropdown v-model="filter.sort">
-        <option v-for="(item, index) in sorting" :key="index">
+        <option v-for="(item, index) in sorting" :key="index" :value="item.sort" :label="item.title">
           {{ item.title }}
         </option>
       </dropdown>

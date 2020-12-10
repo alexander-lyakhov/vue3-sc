@@ -11,6 +11,12 @@ import filterPanel from '@/components/filter-panel';
 import grid from '@/components/grid';
 import products from '@/store/products.json';
 
+const reg = /.*;sort=(.+);.+/i;
+
+products.sortings.forEach(item => {
+  item.sort = item.link.replace(reg, '$1');
+});
+
 console.log('products', products);
 
 export default {

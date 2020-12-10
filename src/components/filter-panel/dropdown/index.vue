@@ -3,9 +3,9 @@
     <select class="selectElement" ref="selectElement">
       <slot></slot>
     </select>
-    <div class="dropdown-label" @click="toggleOpen">{{value}}</div>
+    <div class="dropdown-label" @click="toggleOpen">{{ label }}</div>
     <ul class="dropdown-list" @mouseup="change">
-      <li v-for="(option, index) in options" :key="index" :data-index="index">{{option.value}}</li>
+      <li v-for="(option, index) in options" :key="index" :data-index="index">{{option.label}}</li>
     </ul>
   </div>
 </template>
@@ -26,7 +26,8 @@ export default {
     return {
       options: [],
       isOpen: false,
-      value: ''
+      label: '',
+      value: '',
     }
   },
 
@@ -40,6 +41,7 @@ export default {
     this.options.push(
       ...Array.from(this.$refs.selectElement.options)
     );
+    this.label = this.$refs.selectElement.options[this.$refs.selectElement.selectedIndex].label
     this.value = this.$refs.selectElement.value;
   },
 
@@ -55,6 +57,8 @@ export default {
 
     change(e) {
       this.$refs.selectElement.selectedIndex = e.target.dataset.index;
+
+      this.label = this.$refs.selectElement.options[e.target.dataset.index].label
       this.value = this.$refs.selectElement.value;
 
       console.log('change', this.value, e.target.dataset.index)
