@@ -186,7 +186,7 @@ aside {
   margin: 1rem;
 
   label {
-    min-width: 64px;
+    min-width: 72px;
     height: 2rem;
     line-height: 2rem;
   }
