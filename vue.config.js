@@ -42,7 +42,7 @@
       .loader('svg-to-vue-component/loader');
   },
 
-  publicPath: process.env.NODE_ENV === 'production' ? '/vue-sc/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/vue3-sc/' : '/',
 
   lintOnSave: false,
 };
