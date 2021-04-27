@@ -3,11 +3,13 @@
     <div class="items-count" >{{ count }} items</div>
     <div class="dropdown-wrapper">
       <label>Sort by</label>
-      <dropdown v-model="filter.sort">
-        <option v-for="(item, index) in sorting" :key="index" :value="item.sort" :label="item.title">
-          {{ item.title }}
-        </option>
-      </dropdown>
+      <template v-if="sorting.length">
+        <dropdown v-model="filter.sort">
+          <option v-for="(item, index) in sorting" :key="index" :value="item.sort" :label="item.title">
+            {{ item.title }}
+          </option>
+        </dropdown>
+      </template>
     </div>
     <expander v-for="(facet, facetIndex) in facets" :key="facetIndex" :title="facet.title">
       <template v-if="isBreadcrumbed(facet)">
@@ -48,8 +50,6 @@
 
 <script>
 
-const baseURL = 'http://www.sportchek.ca/services/sportchek/search-and-promote/products';
-
 const defaultUrlParams = {
   'ast-id-level-2':'men::shoes-footwear'
 }
@@ -60,7 +60,6 @@ import colorPalette from './color-palette';
 import range from './range';
 import dropdown from './dropdown';
 import checkboxGroup from './checkbox/checkbox-group.vue';
-import api from '@/api/index.js';
 
 export default {
   name: 'filter-panel',
@@ -106,11 +105,10 @@ export default {
   },
 
   created() {
-    this.$watch('filter', value =>
-      {
-        this.composeURL({...value});
-      },
-      {
+    this.$watch('filter', value => {
+        const urlParams = this.composeURL({...value});
+        this.$store.dispatch('GET_PRODUCTS', urlParams)
+      },{
         deep: true
       }
     )
@@ -119,7 +117,9 @@ export default {
   mounted() {
     const urlParams = this.composeURL(this.filter)
     //api.getProducts(urlParams);
+    //this.$store.dispatch('GET_PRODUCTS', urlParams)
   },
+
 
   methods: {
     getColomnCount(facet) {

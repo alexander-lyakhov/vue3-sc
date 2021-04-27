@@ -1,6 +1,6 @@
 <template>
   <main>
-    <filter-panel :count="resultCount.total" :sorting="sorting" :facets="facets" />
+    <filter-panel :count="resultCount.total" :sorting="sortings" :facets="facets" />
     <grid :products="products" />
   </main>
 </template>
@@ -9,15 +9,9 @@
 
 import filterPanel from '@/components/filter-panel';
 import grid from '@/components/grid';
-import products from '@/store/products.json';
+import { mapState } from 'vuex'
 
-const reg = /.*;sort=(.+);.+/i;
-
-products.sortings.forEach(item => {
-  item.sort = item.link.replace(reg, '$1');
-});
-
-console.log('products', products);
+const reg = /sort=(.+)/i;
 
 export default {
   components: {
@@ -25,13 +19,12 @@ export default {
     grid,
   },
 
-  data() {
-    return {
-      resultCount: products.resultCount,
-      sorting: products.sortings,
-      facets: products.facets,
-      products: products.products
-    }
+  mounted() {
+    this.$store.dispatch('GET_PRODUCTS')
+  },
+
+  computed: {
+    ...mapState(['resultCount', 'sortings', 'facets', 'products']),
   },
 }
 </script>
